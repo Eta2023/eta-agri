@@ -11,14 +11,14 @@
                <!-- Slide One - Set the background image for this slide in the line below -->
                <div class="carousel-item active" style="background-image: url('images/slider-01.jpg')">
                   <div class="carousel-caption d-none d-md-block">
-                     <h3>Welcome to N & LW Lawn Care</h3>
+                     <h3>Welcome to Lawn Care</h3>
                      <p>A Great Theme For Garden Lawn Care</p>
                   </div>
                </div>
                <!-- Slide Two - Set the background image for this slide in the line below -->
                <div class="carousel-item" style="background-image: url('images/slider-02.jpg')">
                   <div class="carousel-caption d-none d-md-block">
-                     <h3>Beautiful Garden</h3>
+                     <h3>Beautiful </h3>
                      <p>A Great Theme For Garden Lawn Care</p>
                   </div>
                </div>
