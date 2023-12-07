@@ -66,24 +66,48 @@ class KingdomController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kingdom $kingdom)
+    public function edit($id)
     {
-        //
+        $kingdom=Kingdom::findOrFail($id);
+        return view('dashboard.pages.kingdom.edit', compact('kingdom'));
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(UpdateKingdomRequest $request, Kingdom $kingdom)
+    public function update(Request $request, $id)
     {
-        //
+        // Data Validate
+        $request->validate([
+            'nameAr' => ['required', 'string'],
+            'nameEng' => ['required', 'string'],
+
+        ]);
+
+        $data = $request->except(['_token', '_method']);
+
+
+
+        Kingdom::where('id', $id)->update($data);
+
+        $notification = array(
+            'message' => 'Kingdom opportunities Updated Successfully!!',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('kingdom-admin.index')->with($notification);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Kingdom $kingdom)
+    public function destroy($id)
     {
-        //
+        $kingodm = Kingdom::findOrFail($id);
+    
+        $kingodm->delete();
+
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
 }

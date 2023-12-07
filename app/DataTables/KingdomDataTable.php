@@ -23,10 +23,10 @@ class KingdomDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                // $editBtn = "<a href='" . route('jobs-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
-                // $deleteBtn = "<a href='" . route('jobs-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
+                $editBtn = "<a href='" . route('kingdom-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
+                $deleteBtn = "<a href='" . route('kingdom-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
 
-                // return $editBtn . $deleteBtn;
+                return $editBtn . $deleteBtn;
             })
 
             ->rawColumns(['action'])
