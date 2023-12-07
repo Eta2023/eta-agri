@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KingdomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,9 @@ Route::get('/', function () {
 Route::get('/log', function () {
     return view('login');
 });
+
+Route::get('/kingdom', function () {
+    return view('dashboard/pages/kingdom');
+});
+
+Route::resource('kingdom-admin',KingdomController::class);

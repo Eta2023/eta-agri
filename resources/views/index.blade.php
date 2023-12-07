@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'ETA')
-@section('content')<header class="slider-main">
+@section('content')
+    <header class="slider-main">
         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
