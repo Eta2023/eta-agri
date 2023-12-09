@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('phylums', function (Blueprint $table) {
+        Schema::create('classetas', function (Blueprint $table) {
             $table->id();
             $table->string('nameAr');
             $table->string('nameEng');
-            $table->string('note');
+            $table->unsignedBigInteger('phylums_id')->unsigned();
+            $table->foreign('phylums_id')->references('id')->on('phylums');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('phylums');
+        Schema::dropIfExists('classetas');
     }
 };

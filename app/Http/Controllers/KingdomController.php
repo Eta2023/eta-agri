@@ -7,19 +7,15 @@ use App\Http\Requests\StoreKingdomRequest;
 use App\Http\Requests\UpdateKingdomRequest;
 use App\DataTables\KingdomDataTable;
 use Illuminate\Http\Request;
+
 class KingdomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(KingdomDataTable $dataTables)
     {
         return $dataTables->render('dashboard.pages.kingdom.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('dashboard.pages.kingdom.create');
@@ -68,7 +64,7 @@ class KingdomController extends Controller
      */
     public function edit($id)
     {
-        $kingdom=Kingdom::findOrFail($id);
+        $kingdom = Kingdom::findOrFail($id);
         return view('dashboard.pages.kingdom.edit', compact('kingdom'));
     }
 
@@ -95,7 +91,7 @@ class KingdomController extends Controller
         Kingdom::where('id', $id)->update($data);
 
         $notification = array(
-            'message' => 'Kingdom opportunities Updated Successfully!!',
+            'message' => 'Kingdom Updated Successfully!!',
             'alert-type' => 'success',
         );
 
@@ -105,7 +101,7 @@ class KingdomController extends Controller
     public function destroy($id)
     {
         $kingodm = Kingdom::findOrFail($id);
-    
+
         $kingodm->delete();
 
         return response(['status' => 'success', 'message' => 'Deleted Successfully!']);

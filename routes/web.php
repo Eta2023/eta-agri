@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassetaController;
 use App\Http\Controllers\KingdomController;
 use App\Http\Controllers\PhylumController;
 
@@ -22,7 +23,11 @@ Route::get('/', function () {
 Route::get('/log', function () {
     return view('login');
 });
+Route::get('/adminDashboard', function () {
+    return view('dashboard.pages.index');
+})->name('dashboard');
 
 Route::resource('kingdom-admin',KingdomController::class);
+Route::resource('class-admin',ClassetaController::class);
 Route::resource('phylum-admin',PhylumController::class);
 
