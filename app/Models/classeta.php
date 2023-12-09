@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Phylum extends Model
+class classeta extends Model
 {
     use HasFactory;
     protected $fillable = [
         'nameAr',
         'nameEng',
-        'kingdom_id',
+        'phylums_id',
         'note',
    
     ];
-    public function kingdom()
+    public function phylums()
     {
-        return $this->belongsTo(Kingdom::class, 'kingdom_id');
+        return $this->belongsTo(Phylum::class, 'phylums_id');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassetaController;
 use App\Http\Controllers\KingdomController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,9 @@ Route::get('/', function () {
 Route::get('/log', function () {
     return view('login');
 });
+Route::get('/adminDashboard', function () {
+    return view('dashboard.pages.index');
+})->name('dashboard');
 
 Route::resource('kingdom-admin',KingdomController::class);
+Route::resource('class-admin',ClassetaController::class);
