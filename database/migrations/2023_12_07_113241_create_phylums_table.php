@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('nameAr');
             $table->string('nameEng');
             $table->string('note');
+            $table->unsignedBigInteger('kingdom_id'); // Set a default country ID
+            $table->foreign('kingdom_id')->references('id')->on('kingdoms')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

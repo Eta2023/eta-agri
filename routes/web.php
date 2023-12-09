@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\KingdomController;
+use App\Http\Controllers\PhylumController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +24,5 @@ Route::get('/log', function () {
 });
 
 Route::resource('kingdom-admin',KingdomController::class);
+Route::resource('phylum-admin',PhylumController::class);
+
