@@ -24,10 +24,9 @@ class RankDataTable extends DataTable
         return (new EloquentDataTable($query))
 
             ->addColumn('action', function ($query) {
-                // $editBtn = "<a href='" . route('Rank-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
-                // $deleteBtn = "<a href='" . route('Rank-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
-
-                // return $editBtn . $deleteBtn;
+                $editBtn = "<a href='" . route('rank-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
+                $deleteBtn = "<a href='" . route('rank-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
+                return $editBtn . $deleteBtn;
             })
             
             ->rawColumns(['action'])

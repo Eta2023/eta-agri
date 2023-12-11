@@ -12,11 +12,12 @@ class Rank extends Model
         'nameAr',
         'nameEng',
         'note',
-        'ranks_id',
+        'class_id',
+        
     ];
     public function classetas()
     {
-        return $this->belongsTo(Classeta::class); // Assuming Classeta is the related model
+        return $this->belongsTo(Classeta::class ,'class_id'); // Assuming Classeta is the related model
     }
 }
 

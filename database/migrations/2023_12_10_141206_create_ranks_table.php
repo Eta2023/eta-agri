@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nameAr');
             $table->string('nameEng');
          $table->text('note')->nullable();
-            $table->unsignedBigInteger('ranks_id')->unsigned();
-            $table->foreign('ranks_id')->references('id')->on('classetas');
+            $table->unsignedBigInteger('class_id')->unsigned();
+            $table->foreign('class_id')->references('id')->on('classetas');
            
             $table->timestamps();
         });
