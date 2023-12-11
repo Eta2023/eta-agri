@@ -3,8 +3,8 @@
 @section('content')
    
 
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row container">
+        <div class="col-md-12">
             <div class="card mb-4">
                 <h5 class="card-header">Add Phylum </h5>
                 <form action="{{ route('phylum-admin.store') }}" method="POST" enctype="multipart/form-data">
@@ -28,15 +28,17 @@
                             <input type="text" class="form-control" id="note" name="note" />
                         </div>
                     </div>
-                    <div class="card-body">
-
-                    <select name="kingdom">
-                        @foreach ($kingdoms as $kingdom)
-                             <!-- Define the options -->
-                            <option value="{{$kingdom -> id}}">{{$kingdom ->nameEng}}</option>
-                        @endforeach
-                       </select>
-                </div>
+                
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="kingdom" class="form-label">kingdom-المملكة</label>
+                        <select class="form-select" id="kingdom" aria-label="kingdom" name="kingdom">
+                            @foreach ($kingdoms as $kingdom)
+                                <option value="{{ $kingdom->id }}">{{ $kingdom->nameAr }}-{{ $kingdom->nameEng }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    </div>
                     <div class="card-body">
                         <div class="mb-3">
                     <button class="btn btn-primary" type="submit" >Submit</button>

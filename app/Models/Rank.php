@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Phylum extends Model
+class Rank extends Model
 {
-use HasFactory;
+    use HasFactory;
     protected $fillable = [
         'nameAr',
         'nameEng',
-        'kingdom_id',
         'note',
-   
+        'ranks_id',
     ];
-    public function kingdom()
+    public function classetas()
     {
-        return $this->belongsTo(Kingdom::class, 'kingdom_id');
+        return $this->belongsTo(Classeta::class); // Assuming Classeta is the related model
     }
 }
+
+
+

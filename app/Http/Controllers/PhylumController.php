@@ -75,24 +75,49 @@ class PhylumController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Phylum $phylum)
+    public function edit($id)
     {
-        //
+        $phylum = Phylum::findOrFail($id);
+        $kingdoms = Kingdom::all();
+        return view('dashboard.pages.Phylum.edit', compact('phylum', 'kingdoms'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePhylumRequest $request, Phylum $phylum)
+    public function update(Request $request, $id)
     {
-        //
+        // Data Validate
+        $request->validate([
+            'nameAr' => ['required', 'string'],
+            'nameEng' => ['required', 'string'],
+            'note' => ['required', 'string'],
+            'kingdom_id' => ['required'],
+
+        ]);
+
+        $data = $request->except(['_token', '_method']);
+
+
+
+        Phylum::where('id', $id)->update($data);
+
+        $notification = array(
+            'message' => 'phylum Updated Successfully!!',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('phylum-admin.index')->with($notification);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Phylum $phylum)
+    public function destroy($id)
     {
-        //
+        $Phylum = Phylum::findOrFail($id);
+        $Phylum->delete();
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
 }

@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('phylums', function (Blueprint $table) {
+        Schema::create('ranks', function (Blueprint $table) {
             $table->id();
             $table->string('nameAr');
             $table->string('nameEng');
-            $table->string('note');
-            $table->unsignedBigInteger('kingdom_id')->unsigned();
-            $table->foreign('kingdom_id')->references('id')->on('kingdoms');
-            $table->timestamps(); 
-         });
+         $table->text('note')->nullable();
+            $table->unsignedBigInteger('ranks_id')->unsigned();
+            $table->foreign('ranks_id')->references('id')->on('classetas');
+           
+            $table->timestamps();
+        });
     }
 
     /**
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('phylums');
+        Schema::dropIfExists('ranks');
     }
 };

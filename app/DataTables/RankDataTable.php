@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Phylum;
+use App\Models\Rank;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class PhylumDataTable extends DataTable
+class RankDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,25 +22,25 @@ class PhylumDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+
             ->addColumn('action', function ($query) {
-                $editBtn = "<a href='" . route('phylum-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
-                $deleteBtn = "<a href='" . route('phylum-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
+                // $editBtn = "<a href='" . route('Rank-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
+                // $deleteBtn = "<a href='" . route('Rank-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
 
-                return $editBtn . $deleteBtn;
+                // return $editBtn . $deleteBtn;
             })
-
+            
             ->rawColumns(['action'])
-
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Phylum $model): QueryBuilder
-    {
-        return $model->newQuery()->with('kingdom');
-    }
+    public function query(Rank $model): QueryBuilder
+{
+    return $model->newQuery()->with('classetas');
+}
 
     /**
      * Optional method if you want to use the html builder.
@@ -48,20 +48,20 @@ class PhylumDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('Phylum-table')
-            ->columns($this->getColumns())
-            ->minifiedAjax()
-            //->dom('Bfrtip')
-            ->orderBy(1)
-            ->selectStyleSingle()
-            ->buttons([
-                Button::make('excel'),
-                Button::make('csv'),
-                Button::make('pdf'),
-                Button::make('print'),
-                Button::make('reset'),
-                Button::make('reload')
-            ]);
+                    ->setTableId('rank-table')
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    //->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->selectStyleSingle()
+                    ->buttons([
+                        Button::make('excel'),
+                        Button::make('csv'),
+                        Button::make('pdf'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
+                    ]);
     }
 
     /**
@@ -69,13 +69,12 @@ class PhylumDataTable extends DataTable
      */
     public function getColumns(): array
     {
-
         return [
             Column::make('nameAr'),
             Column::make('nameEng'),
             Column::make('note'),
-            Column::make('kingdom.nameAr')
-                ->title('kingdom name-Ar')
+            Column::make('classetas.nameAr')
+                ->title('classetas name-Ar')
                 ->searchable(true)
                 ->orderable(true),
 
@@ -84,6 +83,7 @@ class PhylumDataTable extends DataTable
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
+           
         ];
     }
 
@@ -92,6 +92,6 @@ class PhylumDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Phylum' . date('YmdHis');
+        return 'Rank_' . date('YmdHis');
     }
 }

@@ -3,6 +3,8 @@
 use App\Http\Controllers\ClassetaController;
 use App\Http\Controllers\KingdomController;
 use App\Http\Controllers\PhylumController;
+use App\Http\Controllers\RankController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +32,7 @@ Route::get('/adminDashboard', function () {
 Route::resource('kingdom-admin',KingdomController::class);
 Route::resource('class-admin',ClassetaController::class);
 Route::resource('phylum-admin',PhylumController::class);
+Route::resource('rank-admin',RankController::class);
+
+
 

@@ -85,10 +85,22 @@
                 <div data-i18n="Analytics">Kingdom</div>
               </a>
             </li>
+            <li class="menu-item {{ set_active(['phylum-admin.*']) }}">
+              <a href="{{ route('phylum-admin.index') }}" class="menu-link">
+                <i class="menu-icon bx bxs-tree bx-fw"></i>
+                <div data-i18n="Analytics">Phylum</div>
+              </a>
+            </li>
             <li class="menu-item {{ set_active(['class-admin.*']) }}">
               <a href="{{ route('class-admin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-group"></i>
                 <div data-i18n="Analytics">Class</div>
+              </a>
+            </li>
+            <li class="menu-item {{ set_active(['rank-admin.*']) }}">
+              <a href="{{ route('rank-admin.index') }}" class="menu-link">
+                <i class="menu-icon bx bxs-medal bx-fw"></i>
+                <div data-i18n="Analytics">Rank</div>
               </a>
             </li>
           </ul>
