@@ -3,8 +3,8 @@
 @section('content')
 
 
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row container">
+        <div class="col-md-12">
             <div class="card mb-4">
                 <h5 class="card-header">Edit Kingdom </h5>
                 <form action="{{ route('kingdom-admin.update', $kingdom->id) }}" method="POST"

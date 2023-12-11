@@ -2,36 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kingdom;
-use App\Models\Phylum;
-use App\Http\Requests\StorePhylumRequest;
-use App\Http\Requests\UpdatePhylumRequest;
-use App\DataTables\PhylumDataTable;
+use App\DataTables\FamilyDataTable;
+use App\Models\Family;
+use App\Http\Requests\StoreFamilyRequest;
+use App\Http\Requests\UpdateFamilyRequest;
+use App\Models\Rank;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Log;
-
-class PhylumController extends Controller
+class FamilyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(PhylumDataTable $dataTables)
+    public function index(FamilyDataTable $dataTables)
     {
-        return $dataTables->render('dashboard.pages.Phylum.index');
+        return $dataTables->render('dashboard.pages.family.index');
     }
-
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
-        $kingdoms=Kingdom::all();
+        $ranks = Rank::all();
 
-        return view('dashboard.pages.Phylum.create' , compact("kingdoms"));
-
+        return view('dashboard.pages.family.create', compact("ranks"));
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -44,27 +40,26 @@ class PhylumController extends Controller
         ]);
 
 
-        Phylum::create([
+        Family::create([
             'nameAr' => $request->input('nameAr'),
             'nameEng' => $request->input('nameEng'),
             'note' => $request->input('note'),
-
-            'kingdom_id' => $request->input('kingdom'), // Make sure to replace 'kingdom_id' with the actual field name
+            'ranks_id' => $request->input('rank'), 
         ]);
-        
+
 
         $notification = array(
-            'message' => 'Phylum Created Successfully!!',
+            'message' => 'Family Created Successfully!!',
             'alert-type' => 'success',
         );
 
-        return redirect()->route('phylum-admin.index')->with($notification);
+        return redirect()->route('family-admin.index')->with($notification);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Phylum $phylum)
+    public function show(Family $family)
     {
         //
     }
@@ -74,37 +69,31 @@ class PhylumController extends Controller
      */
     public function edit($id)
     {
-        $phylum = Phylum::findOrFail($id);
-        $kingdoms = Kingdom::all();
-        return view('dashboard.pages.Phylum.edit', compact('phylum', 'kingdoms'));
+        $family = Family::findOrFail($id);
+        $ranks = Rank::all();
+        return view('dashboard.pages.family.edit', compact('family', 'ranks'));
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         // Data Validate
         $request->validate([
             'nameAr' => ['required', 'string'],
             'nameEng' => ['required', 'string'],
-            'kingdom_id' => ['required'],
+            'ranks_id' => ['required'],
 
         ]);
 
         $data = $request->except(['_token', '_method']);
 
-
-
-        Phylum::where('id', $id)->update($data);
+        Family::where('id', $id)->update($data);
 
         $notification = array(
-            'message' => 'phylum Updated Successfully!!',
+            'message' => 'Family Updated Successfully!!',
             'alert-type' => 'success',
         );
 
-        return redirect()->route('phylum-admin.index')->with($notification);
+        return redirect()->route('family-admin.index')->with($notification);
     }
 
     /**
@@ -113,12 +102,12 @@ class PhylumController extends Controller
     public function destroy($id)
     {
         try {
-            $Phylum = Phylum::findOrFail($id);
-            $Phylum->delete();
+            $family = Family::findOrFail($id);
+            $family->delete();
             return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
         } catch (\Exception $e) {
-            Log::error("Error deleting phylum: {$e->getMessage()}");
-            return response(['status' => 'error', 'message' => 'You Must have delete Class-الصف first']);
+            Log::error("Error deleting family: {$e->getMessage()}");
+            return response(['status' => 'error', 'message' => 'You Must have delete Genus-الجنس first']);
         }
     }
 }

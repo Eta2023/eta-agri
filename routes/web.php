@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClassetaController;
+use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\KingdomController;
 use App\Http\Controllers\PhylumController;
 use App\Http\Controllers\RankController;
@@ -33,6 +34,7 @@ Route::resource('kingdom-admin',KingdomController::class);
 Route::resource('class-admin',ClassetaController::class);
 Route::resource('phylum-admin',PhylumController::class);
 Route::resource('rank-admin',RankController::class);
+Route::resource('family-admin',FamilyController::class);
 
 
 

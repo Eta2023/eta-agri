@@ -8,7 +8,7 @@ use App\Http\Requests\StoreclassetaRequest;
 use App\Http\Requests\UpdateclassetaRequest;
 use App\Models\Phylum;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 class ClassetaController extends Controller
 {
     /**
@@ -105,8 +105,12 @@ class ClassetaController extends Controller
      */
     public function destroy($id)
     {
-        $class = classeta::findOrFail($id);
+      try{  $class = classeta::findOrFail($id);
         $class->delete();
-        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);}
+        catch (\Exception $e) {
+            Log::error("Error deleting Class: {$e->getMessage()}");
+            return response(['status' => 'error', 'message' => 'You Must have delete Rank-الرتبة first']);
+        }
     }
 }

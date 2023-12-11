@@ -82,25 +82,31 @@
             <li class="menu-item {{ set_active(['kingdom-admin.*']) }}">
               <a href="{{ route('kingdom-admin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-crown"></i>
-                <div data-i18n="Analytics">Kingdom</div>
+                <div data-i18n="Analytics">Kingdom-المملكة</div>
               </a>
             </li>
             <li class="menu-item {{ set_active(['phylum-admin.*']) }}">
               <a href="{{ route('phylum-admin.index') }}" class="menu-link">
                 <i class="menu-icon bx bxs-tree bx-fw"></i>
-                <div data-i18n="Analytics">Phylum</div>
+                <div data-i18n="Analytics">Phylum-الشعبة</div>
               </a>
             </li>
             <li class="menu-item {{ set_active(['class-admin.*']) }}">
               <a href="{{ route('class-admin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-group"></i>
-                <div data-i18n="Analytics">Class</div>
+                <div data-i18n="Analytics">Class-الصف</div>
               </a>
             </li>
             <li class="menu-item {{ set_active(['rank-admin.*']) }}">
               <a href="{{ route('rank-admin.index') }}" class="menu-link">
                 <i class="menu-icon bx bxs-medal bx-fw"></i>
-                <div data-i18n="Analytics">Rank</div>
+                <div data-i18n="Analytics">Rank-الرتبة</div>
+              </a>
+            </li>
+            <li class="menu-item {{ set_active(['family-admin.*']) }}">
+              <a href="{{ route('family-admin.index') }}" class="menu-link">
+                <i class="menu-icon bx bxs-home"></i>
+                <div data-i18n="Analytics">Family-العائلة</div>
               </a>
             </li>
           </ul>

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UpdateRankRequest;
 use App\DataTables\RankDataTable;
 use Database\Seeders\ClassetaSeeder;
-
+use Illuminate\Support\Facades\Log;
 class RankController extends Controller
 {
     /**
@@ -39,7 +39,6 @@ class RankController extends Controller
       $request->validate([
         'nameAr' => ['required', 'string'],
         'nameEng' => ['required', 'string'],
-        'note' => ['required', 'string'],
         'class_id' => ['required'],
     ]);
    
@@ -86,7 +85,6 @@ class RankController extends Controller
         $request->validate([
             'nameAr' => ['required', 'string'],
             'nameEng' => ['required', 'string'],
-            'note' => ['required', 'string'],
             'class_id' => ['required'],
 
         ]);
@@ -110,8 +108,13 @@ class RankController extends Controller
      */
     public function destroy($id)
     {
-        $rank = Rank::findOrFail($id);
-        $rank->delete();
-        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+        try{
+            $rank = Rank::findOrFail($id);
+            $rank->delete();
+            return response(['status' => 'success', 'message' => 'Deleted Successfully!']);}
+            catch  (\Exception $e) {
+                Log::error("Error deleting rank: {$e->getMessage()}");
+                return response(['status' => 'error', 'message' => 'You Must have delete Family-العائلة first']);
+            }
     }
 }

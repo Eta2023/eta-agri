@@ -7,7 +7,7 @@ use App\Http\Requests\StoreKingdomRequest;
 use App\Http\Requests\UpdateKingdomRequest;
 use App\DataTables\KingdomDataTable;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 class KingdomController extends Controller
 {
     public function index(KingdomDataTable $dataTables)
@@ -100,10 +100,14 @@ class KingdomController extends Controller
 
     public function destroy($id)
     {
-        $kingodm = Kingdom::findOrFail($id);
+       try{ $kingodm = Kingdom::findOrFail($id);
 
         $kingodm->delete();
 
-        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);}
+        catch (\Exception $e) {
+            Log::error("Error deleting kingdom: {$e->getMessage()}");
+            return response(['status' => 'error', 'message' => 'You Must have delete Phylum-الشعبة first']);
+        }
     }
 }
