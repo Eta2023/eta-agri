@@ -10,6 +10,7 @@ use App\Http\Controllers\RankController;
 
 
 
+use App\Http\Controllers\SpeciesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,7 @@ Route::resource('phylum-admin',PhylumController::class);
 Route::resource('rank-admin',RankController::class);
 Route::resource('family-admin',FamilyController::class);
 Route::resource('genus-admin',GenusController::class);
+Route::resource('species-admin',SpeciesController::class);
 
 
 
