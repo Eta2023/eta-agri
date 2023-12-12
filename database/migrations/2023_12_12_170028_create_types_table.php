@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nameAr');
             $table->string('nameEng');
             $table->text('note')->nullable();
-            $table->unsignedBigInteger('family_id')->unsigned();
-            $table->foreign('family_id')->references('id')->on('families');
+            $table->unsignedBigInteger('genus_id')->unsigned();
+            $table->foreign('genus_id')->references('id')->on('Genuses');
             $table->timestamps();
         });
     }

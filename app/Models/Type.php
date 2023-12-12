@@ -12,11 +12,11 @@ class Type extends Model
         'nameAr',
         'nameEng',
         'note',
-        'Genus_id',
+        'genus_id',
         
     ];
     public function Genuses()
     {
-        return $this->belongsTo(Genus::class ,'Genus_id'); // Assuming Classeta is the related model
+        return $this->belongsTo(Genus::class ,'genus_id'); // Assuming Classeta is the related model
     }
 }
