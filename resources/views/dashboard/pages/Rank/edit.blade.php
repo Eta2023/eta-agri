@@ -37,7 +37,7 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="class_id" class="form-label">class-المملكة</label>
+                            <label for="class_id" class="form-label">class-الصف</label>
                             <select class="form-select" id="class_id" aria-label="class_id" name="class_id">
                                 @foreach ($classetas as $class)
                                     <option value="{{ $class->id }}" {{ $Rank->class_id == $class->id ? 'selected' : '' }}>

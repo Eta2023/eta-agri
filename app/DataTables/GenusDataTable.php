@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Sex;
+use App\Models\Genus;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class SexDataTable extends DataTable
+class GenusDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,20 +22,21 @@ class SexDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($query) {
-                $editBtn = "<a href='" . route('sex-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
-                $deleteBtn = "<a href='" . route('sex-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
-                return $editBtn . $deleteBtn;
-            })
-            ->setRowId('id');
+        ->addColumn('action', function ($query) {
+            $editBtn = "<a href='" . route('genus-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
+            $deleteBtn = "<a href='" . route('genus-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
+            return $editBtn . $deleteBtn;
+        })
+        ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Sex $model): QueryBuilder
+    public function query(Genus $model): QueryBuilder
     {
-        return $model->newQuery()->with('families');    }
+        return $model->newQuery()->with('families'); ;
+    }
 
     /**
      * Optional method if you want to use the html builder.
@@ -43,7 +44,7 @@ class SexDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('sex-table')
+                    ->setTableId('genus-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -72,13 +73,11 @@ class SexDataTable extends DataTable
                 ->title('Family name-Ar')
                 ->searchable(true)
                 ->orderable(true),
-
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
-           
         ];
     }
 
@@ -87,6 +86,6 @@ class SexDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Sex_' . date('YmdHis');
+        return 'Genus_' . date('YmdHis');
     }
 }

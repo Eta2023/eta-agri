@@ -3,21 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Family;
-use App\Models\Sex;
-use App\Http\Requests\StoreSexRequest;
-use App\Http\Requests\UpdateSexRequest;
+use App\Models\Genus;
+use App\Http\Requests\StoreGenusRequest;
+use App\Http\Requests\UpdateGenusRequest;
 use Illuminate\Http\Request;
-use App\DataTables\SexDataTable;
-
-
-class SexController extends Controller
+use App\DataTables\GenusDataTable;
+use Illuminate\Support\Facades\Log;
+class GenusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(SexDataTable $dataTables)
+    public function index(GenusDataTable $dataTables)
     {
-        return $dataTables->render('dashboard.pages.Sex.index');
+        return $dataTables->render('dashboard.pages.Genus.index');
     }
 
     /**
@@ -27,7 +23,7 @@ class SexController extends Controller
     {
         $families=Family::all();
 
-        return view('dashboard.pages.Sex.create' , compact("families"));
+        return view('dashboard.pages.Genus.create' , compact("families"));
 
     }
 
@@ -42,7 +38,8 @@ class SexController extends Controller
             'nameEng' => ['required', 'string'],
             'family_id' => ['required'],
         ]);
-        Sex::create([
+        
+        Genus::create([
             'nameAr' => $request->input('nameAr'),
             'nameEng' => $request->input('nameEng'),
             'note' => $request->input('note'),
@@ -52,14 +49,14 @@ class SexController extends Controller
             'message' => 'Sex Created Successfully!!',
             'alert-type' => 'success',
         );
-        return redirect()->route('sex-admin.index')->with($notification);
+        return redirect()->route('genus-admin.index')->with($notification);
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Sex $sex)
+    public function show(Genus $genus)
     {
         //
     }
@@ -69,9 +66,9 @@ class SexController extends Controller
      */
     public function edit($id)
     {
-        $sex = Sex::findOrFail($id);
-        $families = Family::all();
-        return view('dashboard.pages.sex.edit', compact('sex', 'families'));
+        $sex = Genus::findOrFail($id);
+        $families = Genus::all();
+        return view('dashboard.pages.Genus.edit', compact('sex', 'families'));
     }
 
     public function update(Request $request, $id)
@@ -85,14 +82,14 @@ class SexController extends Controller
     
         $data = $request->except(['_token', '_method']);
     
-        Sex::where('id', $id)->update($data); // Use Sex model instead of Family model
+        Genus::where('id', $id)->update($data); // Use Sex model instead of Family model
     
         $notification = array(
             'message' => 'Sex Updated Successfully!!',
             'alert-type' => 'success',
         );
     
-        return redirect()->route('sex-admin.index')->with($notification);
+        return redirect()->route('genus-admin.index')->with($notification);
     }
     
 
@@ -102,8 +99,8 @@ class SexController extends Controller
     public function destroy($id)
     {   
         try {
-            $sex = Sex::findOrFail($id);
-            $sex->delete();
+            $genus = Genus::findOrFail($id);
+            $genus->delete();
             return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
         } catch (\Exception $e) {
             Log::error("Error deleting family: {$e->getMessage()}");

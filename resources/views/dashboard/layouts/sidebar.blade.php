@@ -109,10 +109,16 @@
                 <div data-i18n="Analytics">Family-العائلة</div>
               </a>
             </li>
-            <li class="menu-item {{ set_active(['sex-admin.*']) }}">
-              <a href="{{ route('sex-admin.index') }}" class="menu-link">
+            <li class="menu-item {{ set_active(['genus-admin.*']) }}">
+              <a href="{{ route('genus-admin.index') }}" class="menu-link">
                 <i class="menu-icon bx bxs-user"></i>
-                <div data-i18n="Analytics">Sex-الجنس</div>
+                <div data-i18n="Analytics">Genus-الجنس</div>
+              </a>
+            </li>
+            <li class="menu-item {{ set_active(['species-admin.*']) }}">
+              <a href="{{ route('species-admin.index') }}" class="menu-link">
+                <i class="menu-icon bx bxs-user"></i>
+                <div data-i18n="Analytics">Species-الصنف</div>
               </a>
             </li>
           </ul>
