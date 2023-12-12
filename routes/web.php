@@ -5,6 +5,8 @@ use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\KingdomController;
 use App\Http\Controllers\PhylumController;
 use App\Http\Controllers\RankController;
+use App\Http\Controllers\SexController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -35,6 +37,7 @@ Route::resource('class-admin',ClassetaController::class);
 Route::resource('phylum-admin',PhylumController::class);
 Route::resource('rank-admin',RankController::class);
 Route::resource('family-admin',FamilyController::class);
+Route::resource('sex-admin',SexController::class);
 
 
 

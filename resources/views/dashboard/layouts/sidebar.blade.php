@@ -109,6 +109,12 @@
                 <div data-i18n="Analytics">Family-العائلة</div>
               </a>
             </li>
+            <li class="menu-item {{ set_active(['sex-admin.*']) }}">
+              <a href="{{ route('sex-admin.index') }}" class="menu-link">
+                <i class="menu-icon bx bxs-user"></i>
+                <div data-i18n="Analytics">Sex-الجنس</div>
+              </a>
+            </li>
           </ul>
         </aside>
         <!-- / Menu -->
