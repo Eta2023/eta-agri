@@ -37,6 +37,7 @@ class FamilyController extends Controller
         $request->validate([
             'nameAr' => ['required', 'string'],
             'nameEng' => ['required', 'string'],
+            'rank' => ['required'],
         ]);
 
 
