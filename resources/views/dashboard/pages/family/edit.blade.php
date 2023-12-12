@@ -37,10 +37,10 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="kingdom_id" class="form-label">kingdom-المملكة</label>
-                            <select class="form-select" id="kingdom_id" aria-label="kingdom_id" name="kingdom_id">
+                            <label for="rank" class="form-label">kingdom-المملكة</label>
+                            <select class="form-select" id="rank" aria-label="rank" name="ranks_id">
                                 @foreach ($ranks as $rank)
-                                    <option value="{{ $rank->id }}" {{ $family->kingdom_id == $rank->id ? 'selected' : '' }}>
+                                    <option value="{{ $rank->id }}" {{ $family->ranks_id == $rank->id ? 'selected' : '' }}>
                                         {{ $rank->nameAr }} - {{ $rank->nameEng }}
                                     </option>
                                 @endforeach
