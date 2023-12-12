@@ -31,7 +31,7 @@ class TypeDataTable extends DataTable
      */
     public function query(Type $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('Genuses');
     }
 
     /**
@@ -65,11 +65,11 @@ class TypeDataTable extends DataTable
             Column::make('nameAr'),
             Column::make('nameEng'),
             Column::make('note'),
-            Column::make('families.nameAr')
-                ->title('Family name-Ar')
+            Column::make('Genuses.nameAr')
+                ->title('Genus name-Ar')
                 ->searchable(true)
                 ->orderable(true),
-                
+
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
