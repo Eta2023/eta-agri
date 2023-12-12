@@ -71,7 +71,7 @@ class SexController extends Controller
     {
         $sex = Sex::findOrFail($id);
         $families = Family::all();
-        return view('dashboard.pages.family.edit', compact('sex', 'families'));
+        return view('dashboard.pages.sex.edit', compact('sex', 'families'));
     }
 
     public function update(Request $request, $id)
@@ -81,20 +81,20 @@ class SexController extends Controller
             'nameAr' => ['required', 'string'],
             'nameEng' => ['required', 'string'],
             'family_id' => ['required'],
-
         ]);
-
+    
         $data = $request->except(['_token', '_method']);
-
-        Family::where('id', $id)->update($data);
-
+    
+        Sex::where('id', $id)->update($data); // Use Sex model instead of Family model
+    
         $notification = array(
             'message' => 'Sex Updated Successfully!!',
             'alert-type' => 'success',
         );
-
+    
         return redirect()->route('sex-admin.index')->with($notification);
     }
+    
 
     /**
      * Remove the specified resource from storage.
