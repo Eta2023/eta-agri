@@ -115,6 +115,12 @@
                 <div data-i18n="Analytics">Genus-الجنس</div>
               </a>
             </li>
+            <li class="menu-item {{ set_active(['species-admin.*']) }}">
+              <a href="{{ route('species-admin.index') }}" class="menu-link">
+                <i class="menu-icon bx bxs-user"></i>
+                <div data-i18n="Analytics">Species-الصنف</div>
+              </a>
+            </li>
           </ul>
         </aside>
         <!-- / Menu -->

@@ -73,7 +73,6 @@ class GenusDataTable extends DataTable
                 ->title('Family name-Ar')
                 ->searchable(true)
                 ->orderable(true),
-
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
