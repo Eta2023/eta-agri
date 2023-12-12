@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nameEng');
             $table->text('note')->nullable();
             $table->unsignedBigInteger('genus_id')->unsigned();
-            $table->foreign('genus_id')->references('id')->on('Genuses');
+            $table->foreign('genus_id')->references('id')->on('genera');
             $table->timestamps();
         });
     }

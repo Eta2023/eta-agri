@@ -41,6 +41,7 @@ Route::resource('rank-admin',RankController::class);
 Route::resource('family-admin',FamilyController::class);
 Route::resource('genus-admin',GenusController::class);
 Route::resource('species-admin',SpeciesController::class);
+Route::get('Details/{id}', [SpeciesController::class, 'showDetails'])->name('showDetails');
 
 
 
