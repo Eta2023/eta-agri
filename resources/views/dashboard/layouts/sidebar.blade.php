@@ -117,7 +117,7 @@
             </li>
             <li class="menu-item {{ set_active(['species-admin.*', 'showDetails']) }}">
               <a href="{{ route('species-admin.index') }}" class="menu-link">
-                <i class="menu-icon bx bxs-user"></i>
+                <i class="menu-icon bx bxs-florist"></i>
                 <div data-i18n="Analytics">Species-الصنف</div>
               </a>
             </li>
