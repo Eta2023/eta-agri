@@ -36,11 +36,11 @@
                         <div class="mb-3">
                             <img id="showImage" width="100px" src="{{ url('no-image.jpg') }}">
                         </div>
-                    </div>
+                  
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
                         <input class="form-control" type="file" id="image" name="image">
-                    </div>
+                    </div>  </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="type_id" class="form-label">Type-النوع</label>

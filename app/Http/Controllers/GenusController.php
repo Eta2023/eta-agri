@@ -104,7 +104,7 @@ class GenusController extends Controller
             return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
         } catch (\Exception $e) {
             Log::error("Error deleting family: {$e->getMessage()}");
-            return response(['status' => 'error', 'message' => 'You Must have delete Genus-الجنس first']);
+            return response(['status' => 'error', 'message' => 'You Must have delete Type-الصنف first']);
         }
     }
 }
