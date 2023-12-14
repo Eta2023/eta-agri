@@ -31,8 +31,8 @@
                 
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="family_id" class="form-label">Family-العائلة</label>
-                            <select class="form-select" id="family_id" aria-label="family_id" name="family_id">
+                            <label for="gen_id" class="form-label">Family-العائلة</label>
+                            <select class="form-select" id="gen_id" aria-label="gen_id" name="gen_id">
                                 @foreach ($families as $family)
                                     <option value="{{ $family->id }}">{{ $family->nameAr }}-{{ $family->nameEng }}</option>
                                 @endforeach

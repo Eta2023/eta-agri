@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genus;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
@@ -25,15 +26,39 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        $gen=Genus::all();
+
+        return view('dashboard.pages.Type.create' , compact("gen"));
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTypeRequest $request)
+    public function store(Request $request)
     {
-        //
+        // Data Validate
+        $request->validate([
+            'nameAr' => ['required', 'string'],
+            'nameEng' => ['required', 'string'],
+        ]);
+
+
+        Type::create([
+            'nameAr' => $request->input('nameAr'),
+            'nameEng' => $request->input('nameEng'),
+            'note' => $request->input('note'),
+
+            'genus_id' => $request->input('gen_id'), // where genus_id frome table(model) and gen_id from form (create)
+        ]);
+        
+
+        $notification = array(
+            'message' => 'Type Created Successfully!!',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('type-admin.index')->with($notification);
     }
 
     /**
