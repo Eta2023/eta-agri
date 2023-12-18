@@ -70,12 +70,24 @@
                      <a class="nav-link" href="contact.html">Contact</a>
                   </li>
 
-                  <li class="nav-item">
+                   @if (Route::has('login'))
+                    @auth<li class="nav-item">
                           {{-- <div class="card-footer">
                         <a href="#" class="btn btn-primary">Learn More</a>
                      </div> --}}
-                        <a class="nav-link btn-primary" style="color: white" href="/log">Log in</a>
-                     </li>
+                    
+                        <a class="nav-link btn-primary" style="color: white" href="{{route('logout')}}">Log out</a>
+                  </li>
+                  @else
+                  <li class="nav-item">
+                     {{-- <div class="card-footer">
+                   <a href="#" class="btn btn-primary">Learn More</a>
+                </div> --}}
+               
+                   <a class="nav-link btn-primary" style="color: white" href="{{route('login')}}">Log in</a>
+             </li>
+                  @endauth
+                  @endif
                </ul>
             </div>
         </div>

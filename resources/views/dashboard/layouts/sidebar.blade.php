@@ -109,10 +109,22 @@
                             <div data-i18n="Analytics">Genus-الجنس</div>
                         </a>
                     </li>
+                    <li class="menu-item {{ set_active(['types-admin.*']) }}">
+                        <a href="{{ route('types-admin.index') }}" class="menu-link">
+                            <i class="menu-icon bx bxs-user"></i>
+                            <div data-i18n="Analytics">types-النوع</div>
+                        </a>
+                    </li>
                     <li class="menu-item {{ set_active(['species-admin.*', 'showDetails']) }}">
                         <a href="{{ route('species-admin.index') }}" class="menu-link">
                             <i class="menu-icon bx bxs-florist"></i>
                             <div data-i18n="Analytics">Species-الصنف</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ set_active(['user-admin.*']) }}">
+                        <a href="{{ route('user-admin.index') }}" class="menu-link">
+                            <i class="menu-icon bx bxs-user"></i>
+                            <div data-i18n="Analytics">User</div>
                         </a>
                     </li>
                 </ul>
