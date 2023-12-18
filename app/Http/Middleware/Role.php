@@ -17,7 +17,7 @@ class Role
     {
         $user = $request->user();
     
-        if ($user && in_array($user->Role, $roles)) {
+        if ($user && in_array($user->role, $roles)) {
             return $next($request);
         }
     

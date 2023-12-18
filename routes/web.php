@@ -43,11 +43,10 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth', 'verified', 'Role:admin,volunteer'])->group(function () {
+Route::middleware(['auth', 'verified', 'checkRole:admin,volunteer'])->group(function () {
     Route::get('/adminDashboard', function () {
         return view('dashboard.pages.index');
     })->name('dashboard');
-    Route::resource('kingdom-admin', KingdomController::class);
     Route::resource('class-admin', ClassetaController::class);
     Route::resource('phylum-admin', PhylumController::class);
     Route::resource('rank-admin', RankController::class);
@@ -56,8 +55,11 @@ Route::middleware(['auth', 'verified', 'Role:admin,volunteer'])->group(function 
     Route::resource('species-admin', SpeciesController::class);
     Route::get('Details/{id}', [SpeciesController::class, 'showDetails'])->name('showDetails');
     Route::resource('types-admin', TypeController::class);
-    Route::resource('user-admin', UserController::class);
     Route::get('Details/{id}', [SpeciesController::class, 'showDetails'])->name('showDetails');
 });
 
+Route::middleware(['auth', 'verified', 'checkRole:admin'])->group(function () {
 
+    Route::resource('kingdom-admin', KingdomController::class);
+    Route::resource('user-admin', UserController::class);
+});

@@ -14,7 +14,7 @@ class Species extends Model
         'type_id',
         'manufacture_company',
         'image',
-        
+        'verification',
     ];
     public function types()
     {

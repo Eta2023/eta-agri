@@ -11,11 +11,11 @@
                         Add Family
                     </a>
                 </div>
-                @if(session('message'))
-                <div class="alert alert-{{ session('alert-type') }}">
-                    {{ session('message') }}
-                </div>
-            @endif
+                @if (session('message'))
+                    <div class="alert alert-{{ session('alert-type') }}">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 <div class="card-body table-responsive">
                     {{ $dataTable->table() }}
                 </div>

@@ -18,14 +18,18 @@
                             <input type="text" class="form-control" id="nameAr" name="nameAr" value="{{$Rank->nameAr}}" />
                         </div>
                         
-
+                        @error('nameAr')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="nameEng" class="form-label">Name In English</label>
                             <input type="text" class="form-control" id="nameEng" name="nameEng" value="{{$Rank->nameEng}}" />
                         </div>
-                        
+                        @error('nameEng')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
 
                     <div class="card-body">
@@ -33,7 +37,9 @@
                             <label for="note" class="form-label">Note</label>
                             <input type="text" class="form-control" id="note" name="note" value="{{$Rank->note}}" />
                         </div>
-                        
+                        @error('note')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="card-body">
                         <div class="mb-3">

@@ -66,67 +66,79 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
-                    <!-- Dashboard -->
-                    <li class="menu-item @if (request()->routeIs('dashboard')) active @endif ">
-                        <a href="/adminDashboard" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div data-i18n="Analytics">Dashboard</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ set_active(['kingdom-admin.*']) }}">
-                        <a href="{{ route('kingdom-admin.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bxs-crown"></i>
-                            <div data-i18n="Analytics">Kingdom-المملكة</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ set_active(['phylum-admin.*']) }}">
-                        <a href="{{ route('phylum-admin.index') }}" class="menu-link">
-                            <i class="menu-icon bx bxs-tree bx-fw"></i>
-                            <div data-i18n="Analytics">Phylum-الشعبة</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ set_active(['class-admin.*']) }}">
-                        <a href="{{ route('class-admin.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bxs-group"></i>
-                            <div data-i18n="Analytics">Class-الصف</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ set_active(['rank-admin.*']) }}">
-                        <a href="{{ route('rank-admin.index') }}" class="menu-link">
-                            <i class="menu-icon bx bxs-medal bx-fw"></i>
-                            <div data-i18n="Analytics">Rank-الرتبة</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ set_active(['family-admin.*']) }}">
-                        <a href="{{ route('family-admin.index') }}" class="menu-link">
-                            <i class="menu-icon bx bxs-home"></i>
-                            <div data-i18n="Analytics">Family-العائلة</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ set_active(['genus-admin.*']) }}">
-                        <a href="{{ route('genus-admin.index') }}" class="menu-link">
-                            <i class="menu-icon bx bxs-user"></i>
-                            <div data-i18n="Analytics">Genus-الجنس</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ set_active(['types-admin.*']) }}">
-                        <a href="{{ route('types-admin.index') }}" class="menu-link">
-                            <i class="menu-icon bx bxs-user"></i>
-                            <div data-i18n="Analytics">types-النوع</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ set_active(['species-admin.*', 'showDetails']) }}">
-                        <a href="{{ route('species-admin.index') }}" class="menu-link">
-                            <i class="menu-icon bx bxs-florist"></i>
-                            <div data-i18n="Analytics">Species-الصنف</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ set_active(['user-admin.*']) }}">
-                        <a href="{{ route('user-admin.index') }}" class="menu-link">
-                            <i class="menu-icon bx bxs-user"></i>
-                            <div data-i18n="Analytics">User</div>
-                        </a>
-                    </li>
+                    @if (Route::has('login'))
+                        @auth
+                            <!-- Dashboard -->
+                            <li class="menu-item @if (request()->routeIs('dashboard')) active @endif ">
+                                <a href="/adminDashboard" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                                    <div data-i18n="Analytics">Dashboard</div>
+                                </a>
+                            </li>
+
+                            @if (auth()->user()->role == 'admin')
+                                <li class="menu-item {{ set_active(['kingdom-admin.*']) }}">
+                                    <a href="{{ route('kingdom-admin.index') }}" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bxs-crown"></i>
+                                        <div data-i18n="Analytics">Kingdom-المملكة</div>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'volunteer')
+                                <li class="menu-item {{ set_active(['phylum-admin.*']) }}">
+                                    <a href="{{ route('phylum-admin.index') }}" class="menu-link">
+                                        <i class="menu-icon bx bxs-tree bx-fw"></i>
+                                        <div data-i18n="Analytics">Phylum-الشعبة</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item {{ set_active(['class-admin.*']) }}">
+                                    <a href="{{ route('class-admin.index') }}" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bxs-group"></i>
+                                        <div data-i18n="Analytics">Class-الصف</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item {{ set_active(['rank-admin.*']) }}">
+                                    <a href="{{ route('rank-admin.index') }}" class="menu-link">
+                                        <i class="menu-icon bx bxs-medal bx-fw"></i>
+                                        <div data-i18n="Analytics">Rank-الرتبة</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item {{ set_active(['family-admin.*']) }}">
+                                    <a href="{{ route('family-admin.index') }}" class="menu-link">
+                                        <i class="menu-icon bx bxs-home"></i>
+                                        <div data-i18n="Analytics">Family-العائلة</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item {{ set_active(['genus-admin.*']) }}">
+                                    <a href="{{ route('genus-admin.index') }}" class="menu-link">
+                                        <i class="menu-icon bx bxs-user"></i>
+                                        <div data-i18n="Analytics">Genus-الجنس</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item {{ set_active(['types-admin.*']) }}">
+                                    <a href="{{ route('types-admin.index') }}" class="menu-link">
+                                        <i class="menu-icon bx bxs-user"></i>
+                                        <div data-i18n="Analytics">types-النوع</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item {{ set_active(['species-admin.*', 'showDetails']) }}">
+                                    <a href="{{ route('species-admin.index') }}" class="menu-link">
+                                        <i class="menu-icon bx bxs-florist"></i>
+                                        <div data-i18n="Analytics">Species-الصنف</div>
+                                    </a>
+                                </li>
+                                @endif
+                                @if (auth()->user()->role == 'admin')
+                                <li class="menu-item {{ set_active(['user-admin.*']) }}">
+                                    <a href="{{ route('user-admin.index') }}" class="menu-link">
+                                        <i class="menu-icon bx bxs-user"></i>
+                                        <div data-i18n="Analytics">User</div>
+                                    </a>
+                                </li>
+                                @endif
+                            @endauth
+                        @endif
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -197,7 +209,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
+                                        <a class="dropdown-item" href="/logout">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>

@@ -23,6 +23,9 @@
                             <input type="text" class="form-control" id="manufacture-company"
                                 name="manufacture_company" />
                         </div>
+                        @error('manufacture_company')
+                            <span style="color: red"> {{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="card-body">
@@ -31,16 +34,23 @@
                             <label for="license-number" class="form-label">License Number</label>
                             <input type="text" class="form-control" id="license-number" name="license_number" />
                         </div>
+                        @error('license_number')
+                            <span style="color: red"> {{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <img id="showImage" width="100px" src="{{ url('no-image.jpg') }}">
                         </div>
-                  
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Image</label>
-                        <input class="form-control" type="file" id="image" name="image">
-                    </div>  </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image</label>
+                            <input class="form-control" type="file" id="image" name="image">
+                        </div>
+                        @error('image')
+                            <span style="color: red"> {{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="type_id" class="form-label">Type-النوع</label>
@@ -53,26 +63,45 @@
                             </select>
                         </div>
                     </div>
+                    @if (Route::has('login'))
+                        @auth
+                            @if (auth()->user()->role == 'admin')
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="verification" class="form-label">Verification-تحقق</label>
+                                        <select class="form-select" id="verification" aria-label="verification"
+                                            name="verification">
 
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </div>
-                    </div>
+                                            <option value="verified">
+                                                Verified
+                                            </option>
+                                            <option value="unverified">
+                                                Unverified
+                                            </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                @endif @endauth @endif
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                </div>
+
             </div>
-
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#image').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files[0]);
-            })
-        });
-    </script>
-@endsection
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#image').change(function(e) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#showImage').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(e.target.files[0]);
+                })
+            });
+        </script>
+    @endsection

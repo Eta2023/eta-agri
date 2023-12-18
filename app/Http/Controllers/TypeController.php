@@ -58,7 +58,7 @@ class TypeController extends Controller
             'alert-type' => 'success',
         );
 
-        return redirect()->route('type-admin.index')->with($notification);
+        return redirect()->route('types-admin.index')->with($notification);
     }
 
     /**

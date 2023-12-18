@@ -19,6 +19,7 @@ return new class extends Migration
             $table->mediumText('image');
             $table->unsignedBigInteger('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('types');
+            $table->string('verification');
             $table->timestamps();
         });
     }

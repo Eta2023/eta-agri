@@ -85,6 +85,7 @@ class UserDataTable extends DataTable
             Column::make('name'),
             Column::make('email'),
             Column::make('gender'),
+            Column::make('phone'),
             Column::make('role'),
             Column::computed('action')
                   ->exportable(false)

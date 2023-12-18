@@ -6,12 +6,17 @@
     <div class="row container" style="margin-top: 30px">
         <div class="col-md-6 ">
             <div class="card mb-4">
-                <h5 class="card-header">Detail Species </h5>
+                <h5 class="card-header">Detail Species @if ($species->verification == 'verified')
+                        <span class='badge bg-label-info '>{{ $species->verification }}</span>
+                    @else
+                        <span class='badge bg-label-danger'>{{ $species->verification }}</span> </h5>
+                @endif
                 <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-8">
+                    <div class="row g-0 container">
+                        <div class="col-md-8 ">
                             <img class="card-img card-img-left" style="width:200px" src="{{ asset($species->image) }}"
                                 alt="Card image">
+
                         </div>
                         <div class="col-md-6">
                             <div class="card-body">

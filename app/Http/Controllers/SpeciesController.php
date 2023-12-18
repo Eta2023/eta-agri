@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Auth;
 use App\DataTables\SpeciesDataTable;
 use App\Models\Species;
 use App\Http\Requests\StoreSpeciesRequest;
@@ -10,6 +12,7 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Traits\ImageUploadTrait;
+
 class SpeciesController extends Controller
 {
     use ImageUploadTrait;
@@ -27,9 +30,9 @@ class SpeciesController extends Controller
      */
     public function create()
     {
-        $types=Type::all();
+        $types = Type::all();
 
-        return view('dashboard.pages.specias.create' , compact("types"));
+        return view('dashboard.pages.specias.create', compact("types"));
     }
 
     /**
@@ -37,28 +40,33 @@ class SpeciesController extends Controller
      */
     public function store(Request $request)
     {
-         // Data Validate
-         $request->validate([
+        // Data Validate
+        $request->validate([
             'name' => ['required', 'string'],
             'manufacture_company' => ['required', 'string'],
             'license_number' => ['required'],
-            'type_id'=>['required'],
-            'image'=>['required'],
+            'type_id' => ['required'],
+            'image' => ['required'],
+
         ]);
         $imagePath = $this->uploadImage($request, 'image', 'uploads');
-        
+        $id = Auth::id();
+        $user = User::find($id);
+
         Species::create([
             'name' => $request->input('name'),
             'manufacture_company' => $request->input('manufacture_company'),
             'license_number' => $request->input('license_number'),
-            'type_id' => $request->input('type_id'), 
-            'image'=>$imagePath,
+            'type_id' => $request->input('type_id'),
+            'image' => $imagePath,
+            'verification' => $user->role == 'volunteer' ? 'unverified' : $request->input('verification'),
         ]);
+
         $notification = array(
             'message' => 'Species Created Successfully!!',
             'alert-type' => 'success',
         );
-    
+
         return redirect()->route('species-admin.index')->with($notification);
     }
 
@@ -76,7 +84,7 @@ class SpeciesController extends Controller
     public function edit($id)
     {
         $Species = Species::findOrFail($id);
-        $types=Type::all();
+        $types = Type::all();
         return view('dashboard.pages.specias.edit', compact('Species', 'types'));
     }
 
@@ -89,9 +97,9 @@ class SpeciesController extends Controller
             'name' => ['required', 'string'],
             'manufacture_company' => ['required', 'string'],
             'license_number' => ['required'],
-            'type_id'=>['required'],
+            'type_id' => ['required'],
         ]);
-       
+
 
         $data = $request->except(['_token', '_method']);
 
@@ -116,18 +124,19 @@ class SpeciesController extends Controller
      */
     public function destroy($id)
     {
-        try{
+        try {
             $species = Species::findOrFail($id);
             $species->delete();
-            return response(['status' => 'success', 'message' => 'Deleted Successfully!']);}
-            catch  (\Exception $e) {
-                Log::error("Error deleting rank: {$e->getMessage()}");
-                return response(['status' => 'error', 'message' => 'Error']);
-            }
+            return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+        } catch (\Exception $e) {
+            Log::error("Error deleting rank: {$e->getMessage()}");
+            return response(['status' => 'error', 'message' => 'Error']);
+        }
     }
-    public function showDetails($id){
+    public function showDetails($id)
+    {
         $species = Species::with('types')->find($id);
-        return view('dashboard.pages.specias.details',compact('species'));
-    
+        return view('dashboard.pages.specias.details', compact('species'));
+
     }
 }

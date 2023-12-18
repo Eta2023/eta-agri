@@ -15,7 +15,9 @@
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" />
                         </div>
-
+                        @error('name')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
 
                     <div class="card-body">
@@ -23,21 +25,27 @@
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" />
                         </div>
-
+                        @error('email')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone</label>
                             <input type="phone" class="form-control" id="phone" name="phone" />
                         </div>
-
+                        @error('phone')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password" />
                         </div>
-
+                        @error('password')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
 
                     <div class="card-body">
@@ -49,6 +57,9 @@
                             <label for="female" class="form-label">Female</label>
                             <input type="radio" id="female" name="gender" value="female" />
                         </div>
+                        @error('gender')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
 
                     <div class="card-body">
@@ -60,6 +71,9 @@
                                 <option value="admin">Admin</option>
                             </select>
                         </div>
+                        @error('role')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="card-body">
                         <div class="mb-3">

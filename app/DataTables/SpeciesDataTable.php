@@ -32,7 +32,15 @@ class SpeciesDataTable extends DataTable
             ->addColumn('image', function ($query) {
                 return "<img width='100px' src='" . asset($query->image) . "'></img>";
             })
-            ->rawColumns(['action','image'])
+            ->addColumn('verification', function ($query) {
+                if (  $query->verification== 'verified') {
+                    return "<span class='badge bg-label-info'>Verified</span>";
+                } else if($query->verification== 'unverified') {
+                    return "<span class='badge bg-label-danger'>Unverified</span>";
+                }
+                
+            })
+            ->rawColumns(['action','image','verification'])
             ->setRowId('id');
     }
 
@@ -76,6 +84,7 @@ class SpeciesDataTable extends DataTable
             Column::make('manufacture_company'),
             Column::make('license_number'),
             Column::make('image'),
+            Column::make('verification'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

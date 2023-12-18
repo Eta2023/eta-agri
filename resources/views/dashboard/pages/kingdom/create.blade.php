@@ -13,14 +13,18 @@
                             <label for="nameAr" class="form-label">Name In Arabic</label>
                             <input type="text" class="form-control" id="nameAr" name="nameAr" />
                         </div>
-
+                        @error('nameAr')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="nameEng" class="form-label">Name In English</label>
                             <input type="text" class="form-control" id="nameEng" name="nameEng" />
                         </div>
-
+                        @error('nameEng')
+                        <span style="color: red"> {{ $message }}</span>
+                    @enderror
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
