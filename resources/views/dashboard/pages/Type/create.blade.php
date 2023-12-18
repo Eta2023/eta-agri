@@ -31,10 +31,10 @@
                 
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="gen_id" class="form-label">Family-العائلة</label>
+                            <label for="gen_id" class="form-label">Genus-الجنس</label>
                             <select class="form-select" id="gen_id" aria-label="gen_id" name="gen_id">
-                                @foreach ($families as $family)
-                                    <option value="{{ $family->id }}">{{ $family->nameAr }}-{{ $family->nameEng }}</option>
+                                @foreach ($gen as $g)
+                                    <option value="{{ $g->id }}">{{ $g->nameAr }}-{{ $g->nameEng }}</option>
                                 @endforeach
                             </select>
                         </div>
