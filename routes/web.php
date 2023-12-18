@@ -6,10 +6,6 @@ use App\Http\Controllers\GenusController;
 use App\Http\Controllers\KingdomController;
 use App\Http\Controllers\PhylumController;
 use App\Http\Controllers\RankController;
-
-
-
-
 use App\Http\Controllers\SpeciesController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +29,7 @@ Route::get('/log', function () {
 Route::get('/adminDashboard', function () {
     return view('dashboard.pages.index');
 })->name('dashboard');
-
+Route::middleware(['auth', 'verified', 'Role:admin,volunteer'])->group(function () {
 Route::resource('kingdom-admin',KingdomController::class);
 Route::resource('class-admin',ClassetaController::class);
 Route::resource('phylum-admin',PhylumController::class);
@@ -42,6 +38,5 @@ Route::resource('family-admin',FamilyController::class);
 Route::resource('genus-admin',GenusController::class);
 Route::resource('species-admin',SpeciesController::class);
 Route::get('Details/{id}', [SpeciesController::class, 'showDetails'])->name('showDetails');
-
-
+});
 
