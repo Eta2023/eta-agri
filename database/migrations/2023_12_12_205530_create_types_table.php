@@ -28,5 +28,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('types');
+        Schema::dropIfExists('pesticide_types');
+
     }
 };

@@ -15,8 +15,15 @@ class Type extends Model
         'genus_id',
         
     ];
-    public function Genuses()
+    public function genus()
     {
-        return $this->belongsTo(Genus::class ,'genus_id'); // Assuming Classeta is the related model
+        return $this->belongsTo(Genus::class, 'genus_id');
     }
+  
+    public function pesticides()
+{
+    return $this->belongsToMany(Pesticide::class, 'pesticide_types');
 }
+    
+}
+

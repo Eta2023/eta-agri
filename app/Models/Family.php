@@ -18,4 +18,5 @@ class Family extends Model
     {
         return $this->belongsTo(Rank::class, 'ranks_id');
     }
+    
 }

@@ -43,11 +43,11 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="family_id" class="form-label">class-المملكة</label>
-                            <select class="form-select" id="family_id" aria-label="family_id" name="family_id">
-                                @foreach ($families as $family)
-                                    <option value="{{ $family->id }}" {{ $Type->family_id == $family->id ? 'selected' : '' }}>
-                                        {{ $family->nameAr }} - {{ $family->nameEng }}
+                            <label for="genus_id" class="form-label">Genus-الجنس</label>
+                            <select class="form-select" id="genus_id" aria-label="genus_id" name="genus_id">
+                                @foreach ($genus as $gen)
+                                    <option value="{{ $gen->id }}" {{ $Type->genus_id == $gen->id ? 'selected' : '' }}>
+                                        {{ $gen->nameAr }} - {{ $gen->nameEng }}
                                     </option>
                                 @endforeach
                             </select>

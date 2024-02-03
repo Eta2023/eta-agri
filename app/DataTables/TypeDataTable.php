@@ -22,17 +22,23 @@ class TypeDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'type.action')
+            ->addColumn('action',  function ($query) {
+                $editBtn = "<a href='" . route('types-admin.edit', $query->id) . "' class='btn btn-success mr-2''><i class='far fa-edit'></i></a>";
+                $deleteBtn = "<a href='" . route('types-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
+                return $editBtn . $deleteBtn;
+            })
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
+  
     public function query(Type $model): QueryBuilder
-    {
-        return $model->newQuery()->with('Genuses');
-    }
+{
+    return $model->newQuery()->with('genus');
+}
+
 
     /**
      * Optional method if you want to use the html builder.
@@ -65,7 +71,7 @@ class TypeDataTable extends DataTable
             Column::make('nameAr'),
             Column::make('nameEng'),
             Column::make('note'),
-            Column::make('Genuses.nameAr')
+            Column::make('genus.nameAr')
                 ->title('Genus name-Ar')
                 ->searchable(true)
                 ->orderable(true),
@@ -73,12 +79,9 @@ class TypeDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(120)
                 ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+ 
         ];
     }
 

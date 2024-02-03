@@ -3,7 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\classeta;
-use App\Models\Classetum;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -24,14 +23,12 @@ class ClassetaDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $editBtn = "<a href='" . route('class-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
+                $editBtn = "<a href='" . route('class-admin.edit', $query->id) . "' class='btn btn-success mr-2''><i class='far fa-edit'></i></a>";
                 $deleteBtn = "<a href='" . route('class-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
 
                 return $editBtn . $deleteBtn;
             })
-
             ->rawColumns(['action'])
-
             ->setRowId('id');
     }
 
@@ -93,8 +90,9 @@ class ClassetaDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(120)
                 ->addClass('text-center'),
+                
 
         ];
     }

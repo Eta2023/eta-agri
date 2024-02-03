@@ -32,7 +32,7 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="gen_id" class="form-label">Genus-الجنس</label>
-                            <select class="form-select" id="gen_id" aria-label="gen_id" name="gen_id">
+                            <select class="form-select" id="gen_id" aria-label="gen_id" name="genus_id">
                                 @foreach ($gen as $g)
                                     <option value="{{ $g->id }}">{{ $g->nameAr }}-{{ $g->nameEng }}</option>
                                 @endforeach

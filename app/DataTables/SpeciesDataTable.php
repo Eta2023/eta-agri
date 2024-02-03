@@ -23,8 +23,8 @@ class SpeciesDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $mediaBtn = "<a href='" . route('showDetails', ['id' => $query->id]) . "' class='btn btn-info my-2'><i class='far fa-exclamation'></i></a>";
-                $editBtn = "<a href='" . route('species-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
+                $mediaBtn = "<a href='" . route('showDetails', ['id' => $query->id]) . "' class='btn btn-info my-2 mr-2''><i class='far fa-exclamation'></i></a>";
+                $editBtn = "<a href='" . route('species-admin.edit', $query->id) . "' class='btn btn-success mr-2''><i class='far fa-edit'></i></a>";
                 $deleteBtn = "<a href='" . route('species-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
 
                 return $mediaBtn.$editBtn . $deleteBtn;
@@ -88,7 +88,7 @@ class SpeciesDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(120)
                 ->addClass('text-center'),
         ];
     }

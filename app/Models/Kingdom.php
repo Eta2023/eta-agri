@@ -13,4 +13,9 @@ class Kingdom extends Model
         'nameEng',
    
     ];
+  
+    public function phylums()
+    {
+        return $this->hasMany(Phylum::class);
+    }
 }

@@ -23,7 +23,7 @@ class GenusDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', function ($query) {
-            $editBtn = "<a href='" . route('genus-admin.edit', $query->id) . "' class='btn btn-success'><i class='far fa-edit'></i></a>";
+            $editBtn = "<a href='" . route('genus-admin.edit', $query->id) . "' class='btn btn-success mr-2''><i class='far fa-edit'></i></a>";
             $deleteBtn = "<a href='" . route('genus-admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
             return $editBtn . $deleteBtn;
         })
@@ -76,7 +76,7 @@ class GenusDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(120)
                 ->addClass('text-center'),
         ];
     }

@@ -50,6 +50,24 @@
     {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
         rel="stylesheet" /> --}}
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <!-- Add these to your HTML layout or page -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Add this in your HTML file, preferably in the head section -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Add this to the end of your Blade layout file, just before the closing </body> tag -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -70,7 +88,7 @@
                         @auth
                             <!-- Dashboard -->
                             <li class="menu-item @if (request()->routeIs('dashboard')) active @endif ">
-                                <a href="/adminDashboard" class="menu-link">
+                                <a href="/admin/adminDashboard" class="menu-link">
                                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                                     <div data-i18n="Analytics">Dashboard</div>
                                 </a>
@@ -86,59 +104,66 @@
                             @endif
 
                             @if (auth()->user()->role == 'admin' || auth()->user()->role == 'volunteer')
-                                <li class="menu-item {{ set_active(['phylum-admin.*']) }}">
-                                    <a href="{{ route('phylum-admin.index') }}" class="menu-link">
-                                        <i class="menu-icon bx bxs-tree bx-fw"></i>
-                                        <div data-i18n="Analytics">Phylum-الشعبة</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item {{ set_active(['class-admin.*']) }}">
-                                    <a href="{{ route('class-admin.index') }}" class="menu-link">
-                                        <i class="menu-icon tf-icons bx bxs-group"></i>
-                                        <div data-i18n="Analytics">Class-الصف</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item {{ set_active(['rank-admin.*']) }}">
-                                    <a href="{{ route('rank-admin.index') }}" class="menu-link">
-                                        <i class="menu-icon bx bxs-medal bx-fw"></i>
-                                        <div data-i18n="Analytics">Rank-الرتبة</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item {{ set_active(['family-admin.*']) }}">
-                                    <a href="{{ route('family-admin.index') }}" class="menu-link">
-                                        <i class="menu-icon bx bxs-home"></i>
-                                        <div data-i18n="Analytics">Family-العائلة</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item {{ set_active(['genus-admin.*']) }}">
-                                    <a href="{{ route('genus-admin.index') }}" class="menu-link">
+                            
+                            <li class="menu-item">
+                                {{-- <label for="category-dropdown" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bxs-group"></i>
+                                    <div data-i18n="Analytics">التصنيفات</div>
+                                </label> --}}
+                                <select id="category-dropdown" class="dropdown-list menu-link" onchange="window.location.href=this.value">
+                                    <option>التصنيفات</option>
+
+                                    <option value="{{ route('phylum-admin.index') }}" {{ set_active(['phylum-admin.*']) }}>Phylum-الشعبة</option>
+                                    <option value="{{ route('class-admin.index') }}" {{ set_active(['class-admin.*']) }}>Class-الصف</option>
+                                    <option value="{{ route('rank-admin.index') }}" {{ set_active(['rank-admin.*']) }}>Rank-الرتبة</option>
+                                    <option value="{{ route('family-admin.index') }}" {{ set_active(['family-admin.*']) }}>Family-العائلة</option>
+                                    <option value="{{ route('genus-admin.index') }}" {{ set_active(['genus-admin.*']) }}>Genus-الجنس</option>
+                                    <option value="{{ route('types-admin.index') }}" {{ set_active(['types-admin.*']) }}>types-النوع</option>
+                                    <option value="{{ route('species-admin.index') }}" {{ set_active(['species-admin.*', 'showDetails']) }}>Species-الصنف</option>
+                                </select>
+                            </li>
+                            
+                                <li class="menu-item {{ set_active(['companies-admin.*']) }}">
+                                    <a href="{{ route('companies-admin.index') }}" class="menu-link">
                                         <i class="menu-icon bx bxs-user"></i>
-                                        <div data-i18n="Analytics">Genus-الجنس</div>
+                                        <div data-i18n="Analytics">Company-الشركة</div>
                                     </a>
                                 </li>
-                                <li class="menu-item {{ set_active(['types-admin.*']) }}">
-                                    <a href="{{ route('types-admin.index') }}" class="menu-link">
-                                        <i class="menu-icon bx bxs-user"></i>
-                                        <div data-i18n="Analytics">types-النوع</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item {{ set_active(['species-admin.*', 'showDetails']) }}">
-                                    <a href="{{ route('species-admin.index') }}" class="menu-link">
-                                        <i class="menu-icon bx bxs-florist"></i>
-                                        <div data-i18n="Analytics">Species-الصنف</div>
-                                    </a>
-                                </li>
-                                @endif
-                                @if (auth()->user()->role == 'admin')
+                            @endif
+                            @if (auth()->user()->role == 'admin')
                                 <li class="menu-item {{ set_active(['user-admin.*']) }}">
                                     <a href="{{ route('user-admin.index') }}" class="menu-link">
                                         <i class="menu-icon bx bxs-user"></i>
                                         <div data-i18n="Analytics">User</div>
                                     </a>
                                 </li>
-                                @endif
-                            @endauth
+                            @endif
+                            @if (auth()->user()->role == 'admin')
+                            <li class="menu-item {{ set_active(['user-admin.*']) }}">
+                                <a href="{{ route('pesticides-admin.index') }}" class="menu-link">
+                                    <i class="menu-icon bx bxs-user"></i>
+                                    <div data-i18n="Analytics">Pesticide-المبيدات</div>
+                                </a>
+                            </li>
                         @endif
+                        @if (auth()->user()->role == 'admin')
+                        <li class="menu-item {{ set_active(['user-admin.*']) }}">
+                            <a href="{{ route('AgricultureTypes-admin.index') }}" class="menu-link">
+                                <i class="menu-icon bx bxs-user"></i>
+                                <div data-i18n="Analytics">agriculture_types-انواع الزراعة</div>
+                            </a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->role == 'admin')
+                    <li class="menu-item {{ set_active(['user-admin.*']) }}">
+                        <a href="{{ route('IrrigationTypes-admin.index') }}" class="menu-link">
+                            <i class="menu-icon bx bxs-user"></i>
+                            <div data-i18n="Analytics">irrigation_types-انواع الري</div>
+                        </a>
+                    </li>
+                @endif
+                        @endauth
+                    @endif
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -149,33 +174,23 @@
 
                 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
                     id="layout-navbar">
-                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                            <i class="bx bx-menu bx-sm"></i>
-                        </a>
-                    </div>
 
+                
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                         <!-- Search -->
 
                         <!-- /Search -->
-
+                        @if (Route::has('login'))
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
-                            <!-- Place this tag where you want the button to render. -->
-                            <li class="nav-item lh-1 me-3">
-                                <a class="github-button"
-                                    href="https://github.com/themeselection/sneat-html-admin-template-free"
-                                    data-icon="octicon-star" data-size="large" data-show-count="true"
-                                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                            </li>
+                         
 
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                @auth
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ asset('dashboard/assets/img/avatars/1.png') }}" alt
-                                            class="w-px-40 h-auto rounded-circle" />
+                                        <span class="fw-semibold d-block"> {{ auth()->user()->name }}</span>
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -183,13 +198,10 @@
                                         <a class="dropdown-item" href="#">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar avatar-online">
-                                                        <img src="{{ asset('dashboard/assets/img/avatars/1.png') }}"
-                                                            alt class="w-px-40 h-auto rounded-circle" />
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">John Doe</span>
+                                                    <span class="fw-semibold d-block"> {{ auth()->user()->name }}</span>
                                                     <small class="text-muted">Admin</small>
                                                 </div>
                                             </div>
@@ -209,14 +221,19 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="/logout">
+                                        <a class="dropdown-item" href="{{ route('logout') }}">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
                                     </li>
+                                    @else
+                                    <a class="nav-link btn-primary" style="color: white" href="{{ route('login') }}">Log
+                                        in</a>
                                 </ul>
                             </li>
+                            @endif
                             <!--/ User -->
                         </ul>
                     </div>
+                    @endif
                 </nav>
